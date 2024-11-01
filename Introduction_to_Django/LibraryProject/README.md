@@ -13,6 +13,7 @@ django-admin startproject LibraryProject
 ```bash
 cd LibraryProject
 ```
+Create a README.md file in LIbraryProject
 ```bash 
 touch README.md
 ```
