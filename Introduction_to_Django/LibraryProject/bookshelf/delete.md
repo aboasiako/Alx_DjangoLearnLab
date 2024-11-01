@@ -1,10 +1,10 @@
 # Delete a Book Instance
 
 ## Command
-```bash
-book= Book.objects.get(title="1984")
+```python 
+from bookshelf.models import Book
+book = Book.objects.get(title="Nineteen Eighty-Four")
 book.delete()
-
-#To comfrim Deletion
 books=Book.objects.all()
 print(books)
+```
