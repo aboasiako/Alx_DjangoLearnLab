@@ -2,9 +2,8 @@
 
 ## Command
 
-```bash
-books = Book.objects.filter(title="1984")
-for book in books:
-    print(book)
-
+```python
+from bookshelf.models import Book
+book = Book.objects.get(title="1984")
+print(book)
 ```
