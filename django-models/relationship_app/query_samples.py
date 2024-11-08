@@ -15,5 +15,5 @@ def list_all_books_in_library(library_name):
 # Retrieve the librarian for a library
 def retrieve_librarian_for_library(library_name):
     library = Library.objects.get(name=library_name)  # Get the library by name
-    librarian = library.librarian  # Access the librarian related to the library
+    librarian = Librarian.objects.get(library=library)  # Fetch the librarian associated with the library
     return librarian
