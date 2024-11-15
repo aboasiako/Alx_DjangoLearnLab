@@ -31,3 +31,15 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
 
         return self.create_user(username, email, password, **extra_fields)
+
+class MyModel(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+
+    class Meta:
+        permissions = [
+            ("can_view", "Can view instances"),
+            ("can_create", "Can create instances"),
+            ("can_edit", "Can edit instances"),
+            ("can_delete", "Can delete instances"),
+        ]
