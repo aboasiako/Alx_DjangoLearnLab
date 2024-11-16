@@ -28,4 +28,19 @@ class CustomUser(AbstractUser):
     objects = CustomUserManager()
 
 
+class Document(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        permissions = [
+            ('can_view', 'Can view document'),
+            ('can_create', 'Can create document'),
+            ('can_edit', 'Can edit document'),
+            ('can_delete', 'Can delete document'),
+        ]
+
+
+
 

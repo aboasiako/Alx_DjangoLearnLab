@@ -1,14 +1,26 @@
 from django.contrib.auth.decorators import permission_required
-from django.shortcuts import render, get_object_or_404
-from .models import MyModel
+from django.shortcuts import get_object_or_404, render, redirect
+from .models import Document
 
-@permission_required('app_name.can_view', raise_exception=True)
-def view_instance(request, pk):
-    instance = get_object_or_404(MyModel, pk=pk)
-    return render(request, 'view_template.html', {'instance': instance})
+@permission_required('your_app_name.can_create', raise_exception=True)
+def create_document(request):
+    # Logic to create a document
+    pass
 
-@permission_required('app_name.can_edit', raise_exception=True)
-def edit_instance(request, pk):
-    instance = get_object_or_404(MyModel, pk=pk)
-    # Logic to handle editing
-    return render(request, 'edit_template.html', {'instance': instance})
+@permission_required('your_app_name.can_edit', raise_exception=True)
+def edit_document(request, doc_id):
+    document = get_object_or_404(Document, id=doc_id)
+    # Logic to edit a document
+    pass
+
+@permission_required('your_app_name.can_view', raise_exception=True)
+def view_document(request, doc_id):
+    document = get_object_or_404(Document, id=doc_id)
+    return render(request, 'document_detail.html', {'document': document})
+
+@permission_required('your_app_name.can_delete', raise_exception=True)
+def delete_document(request, doc_id):
+    document = get_object_or_404(Document, id=doc_id)
+    document.delete()
+    return redirect('document_list')
+

@@ -36,10 +36,23 @@ class MyModel(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
 
+class Book(models.Model):
+
+    title = models.CharField(max_length=200)
+    author = models.CharField(max_length=100)
+    publication_date = models.DateField()
+    isbn = models.CharField(max_length=13, unique=True)
+    genre = models.CharField(max_length=100, blank=True, null=True)
+    available_copies = models.PositiveIntegerField(default=1)
+
+
     class Meta:
         permissions = [
-            ("can_view", "Can view instances"),
-            ("can_create", "Can create instances"),
-            ("can_edit", "Can edit instances"),
-            ("can_delete", "Can delete instances"),
+            ("can_view", "Can view book"),
+            ("can_create", "Can create book"),
+            ("can_edit", "Can edit book"),
+            ("can_delete", "Can delete book"),
         ]
+
+    def __str__(self):
+        return self.title
