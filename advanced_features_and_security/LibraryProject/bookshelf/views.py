@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Document
+from django.shortcuts import render
+from .models import Book 
 
 @permission_required('your_app_name.can_create', raise_exception=True)
 def create_document(request):
@@ -23,4 +25,8 @@ def delete_document(request, doc_id):
     document = get_object_or_404(Document, id=doc_id)
     document.delete()
     return redirect('document_list')
+
+def book_list(request):
+    books = Book.objects.all()  # Fetch all book objects
+    return render(request, 'bookshelf/book_list.html', {'books': books})
 
