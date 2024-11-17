@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-81qt5dxog77qyw1zj2mt-45$*1xjki=)(av(b3kk-vgjk%9h0p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -38,6 +38,11 @@ INSTALLED_APPS = [
     'bookshelf.apps.BookshelfConfig',  # Make sure this app is added for bookshelf functionality
     'relationship_app.apps.RelationshipAppConfig',
 ]
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
